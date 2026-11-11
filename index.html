@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KidsToon AI Studio — Free</title>
+<style>
+:root{--ink:#203047;--muted:#63738a;--bg:#f4f8ff;--card:#fff;--line:#dce6f4;--accent:#635bdb;--accent2:#18a999}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#eef4ff,#fff7f0);font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;color:var(--ink)}
+.wrap{max-width:980px;margin:28px auto;padding:16px}.hero{background:linear-gradient(120deg,#635bdb,#18a999);color:white;padding:28px;border-radius:22px;box-shadow:0 12px 30px #344b7720}
+h1{margin:0 0 8px;font-size:clamp(25px,5vw,38px)}.hero p{margin:0;opacity:.95}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 6px 20px #344b770c}
+label{display:block;font-weight:650;margin:12px 0 6px}input,select,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:11px;font:inherit;background:#fff;color:var(--ink)}textarea{min-height:76px;resize:vertical}.btn{border:0;border-radius:12px;padding:12px 16px;font:inherit;font-weight:700;cursor:pointer;background:var(--accent);color:#fff;margin:10px 8px 0 0}.btn.alt{background:#e9edff;color:#4039a8}.btn.green{background:var(--accent2)}.hint{font-size:13px;color:var(--muted);line-height:1.5}.output{margin-top:18px}.scene{border:1px solid var(--line);border-radius:14px;padding:15px;margin:12px 0;background:#fbfdff}.scene h3{margin:0 0 8px}.scene p{margin:7px 0;line-height:1.55}.tag{display:inline-block;background:#e8f7f4;color:#087e70;padding:3px 8px;border-radius:20px;font-size:12px;font-weight:700}.hidden{display:none}.notice{background:#fff8df;border:1px solid #f2df9b;padding:13px;border-radius:12px;margin-top:14px;font-size:14px;line-height:1.5}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.wrap{margin:10px auto;padding:12px}.hero{padding:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <header class="hero">
+  <h1>🎬 KidsToon AI Studio</h1>
+  <p>Free Starter • শিশুদের কার্টুন গল্প, Scene Plan ও AI Prompt তৈরি করুন</p>
+ </header>
+ <div class="grid">
+  <section class="card">
+   <h2>গল্পের সেটিংস</h2>
+   <label for="title">গল্পের নাম / আইডিয়া</label>
+   <input id="title" placeholder="যেমন: খরগোশ ও কচ্ছপের বন্ধুত্ব">
+   <label for="theme">কার্টুনের ধরন</label>
+   <select id="theme"><option>বন্ধুত্ব ও ভালো কাজ</option><option>পশুপাখির মজার গল্প</option><option>নৈতিক শিক্ষা</option><option>অ্যাডভেঞ্চার</option><option>সংখ্যা ও রং শেখা</option></select>
+   <label for="lang">ভাষা</label>
+   <select id="lang"><option value="বাংলা">বাংলা</option><option value="English">English</option><option value="Hindi">Hindi</option></select>
+   <label for="duration">ভিডিওর দৈর্ঘ্য</label>
+   <select id="duration"><option value="30">৩০ সেকেন্ড</option><option value="45" selected>৪৫ সেকেন্ড</option><option value="60">৬০ সেকেন্ড</option></select>
+   <label for="characters">প্রধান চরিত্র</label>
+   <input id="characters" placeholder="যেমন: টুকু খরগোশ, মিঠু কচ্ছপ">
+   <label for="lesson">গল্পের শিক্ষা (ঐচ্ছিক)</label>
+   <input id="lesson" placeholder="যেমন: ধৈর্য ও চেষ্টা সফলতা আনে">
+   <button class="btn" onclick="generate()">✨ Storyboard তৈরি করো</button>
+   <p class="hint">এই Free Starter কোনো paid API ব্যবহার করে না। এটি গল্পের কাঠামো, ভয়েস স্ক্রিপ্ট ও দৃশ্যভিত্তিক prompt বানায়।</p>
+  </section>
+  <section class="card">
+   <h2>কীভাবে ব্যবহার করবে</h2>
+   <ol>
+    <li>গল্পের নাম ও চরিত্র লিখো।</li>
+    <li>Storyboard তৈরি করো।</li>
+    <li>প্রতিটি Scene-এর image prompt দিয়ে ছবি বানাও।</li>
+    <li>ভয়েস স্ক্রিপ্ট রেকর্ড বা free text-to-speech দিয়ে ভয়েস বানাও।</li>
+    <li>CapCut-এর মতো এডিটরে 9:16 ভিডিও সাজাও।</li>
+   </ol>
+   <div class="notice"><b>বাস্তব সীমাবদ্ধতা:</b> সম্পূর্ণ AI অ্যানিমেশন ও MP4 রেন্ডারিং একদম বিনামূল্যে, কোনো API বা বাহ্যিক টুল ছাড়া করা সম্ভব নয়। এই সংস্করণটি প্রস্তুতির কাজ স্বয়ংক্রিয় করে; ভিডিও জোড়া লাগানোর কাজ এডিটরে করতে হবে।</div>
+  </section>
+ </div>
+ <section class="card output hidden" id="result">
+  <h2>তোমার কার্টুন Storyboard</h2>
+  <div id="story"></div>
+  <button class="btn green" onclick="downloadText()">⬇️ Storyboard TXT ডাউনলোড</button>
+  <button class="btn alt" onclick="copyText()">কপি করো</button>
+ </section>
+ <section class="card output" id="video-maker">
+  <h2>🎥 ভিডিও তৈরি ও Export</h2>
+  <p class="hint">Storyboard তৈরি করার পর প্রতিটি Scene-এর জন্য ছবি আপলোড করো। এই টুল ছবিগুলো দিয়ে 9:16 animated slideshow video বানাবে। চাইলে নিজের voice-over বা background music-ও যোগ করতে পারবে।</p>
+  <label for="sceneImages">Scene-এর ছবি (একসঙ্গে একাধিক ছবি নির্বাচন করো, ক্রমানুসারে)</label>
+  <input id="sceneImages" type="file" accept="image/*" multiple>
+  <label for="audioFile">Voice-over / Background Music (ঐচ্ছিক)</label>
+  <input id="audioFile" type="file" accept="audio/*">
+  <label for="sceneSeconds">প্রতি Scene কত সেকেন্ড থাকবে?</label>
+  <select id="sceneSeconds"><option value="4">৪ সেকেন্ড</option><option value="5" selected>৫ সেকেন্ড</option><option value="6">৬ সেকেন্ড</option></select>
+  <button class="btn green" onclick="makeVideo()">▶️ ভিডিও তৈরি করো</button>
+  <p id="videoStatus" class="hint" aria-live="polite">ভিডিও তৈরি করতে ছবি আপলোড করা প্রয়োজন।</p>
+  <video id="preview" controls playsinline class="hidden" style="width:min(100%,360px);background:#111;border-radius:14px"></video>
+  <br><a id="videoDownload" class="btn hidden" download="kidstoon-short.webm">⬇️ ভিডিও ডাউনলোড করো</a>
+  <div class="notice">নোট: এই Free সংস্করণটি আপলোড করা ছবিগুলোতে হালকা zoom/pan effect দিয়ে WebM ভিডিও বানায়। এটি নিজে থেকে AI ছবি বা AI lip-sync animation তৈরি করে না। ভিডিও export-এর জন্য Chrome বা Edge ব্যবহার করো; MP4 নয়, WebM ফরম্যাটে ডাউনলোড হবে।</div>
+ </section>
+</div>
+<script>
+let finalText='';
+function generate(){
+ const title=document.getElementById('title').value.trim()||'একটি সুন্দর বন্ধুত্বের গল্প';
+ const theme=document.getElementById('theme').value, lang=document.getElementById('lang').value;
+ const duration=+document.getElementById('duration').value;
+ const chars=document.getElementById('characters').value.trim()||'একটি ছোট খরগোশ ও তার বন্ধু';
+ const lesson=document.getElementById('lesson').value.trim()||'বন্ধুত্ব, সাহস ও ভালো কাজ';
+ const count=duration===30?4:duration===45?5:6;
+ const bn=[
+  ['শুরু','রঙিন, সুন্দর এক গ্রামে প্রধান চরিত্রদের পরিচয়।','একটি উজ্জ্বল, শিশু-বান্ধব 3D cartoon village, নরম আলো, cheerful colors, consistent character design.'],
+  ['সমস্যা','একটি ছোট সমস্যা দেখা দেয় এবং চরিত্ররা সাহায্য করার সিদ্ধান্ত নেয়।','The same cute characters notice a small harmless problem, expressive faces, cinematic wide shot, colorful 3D kids animation.'],
+  ['চেষ্টা','তারা একসঙ্গে বুদ্ধি খাটিয়ে সমাধানের চেষ্টা করে।','The same characters work together, clear action, friendly expressions, vibrant children cartoon style, maintain identical outfits and appearance.'],
+  ['সমাধান','তাদের সহযোগিতায় সমস্যার সমাধান হয়।','The problem is solved in a joyful way, warm lighting, happy expressions, polished 3D animated movie look.'],
+  ['শেষ ও শিক্ষা','সবাই খুশি হয় এবং গল্পের শিক্ষাটি বলে।','The characters smile and wave at the camera, cheerful ending, simple uncluttered background, 3D kids cartoon.'],
+  ['অতিরিক্ত মুহূর্ত','চরিত্ররা দর্শকদের সঙ্গে মজার একটি ছোট মুহূর্ত ভাগ করে।','A playful final moment with the same characters, gentle comedy, bright family-friendly 3D animation.']
+ ];
+ const en=[
+  ['Opening','Introduce the characters in a bright, friendly place.','Bright colorful 3D cartoon village, cute friendly characters, soft lighting, consistent character design.'],
+  ['Problem','A small safe problem appears and the friends decide to help.','The same cute characters notice a small harmless problem, expressive faces, colorful 3D kids animation.'],
+  ['Trying','They work together and try a clever solution.','The same characters work together, friendly expressions, vibrant children cartoon style, consistent outfits.'],
+  ['Solution','Their teamwork solves the problem.','Joyful solution, warm lighting, happy expressions, polished 3D animated movie look.'],
+  ['Lesson','Everyone is happy and shares the lesson.','Characters smile and wave at the camera, cheerful ending, family-friendly 3D cartoon.'],
+  ['Extra moment','A playful final moment for young viewers.','A playful final moment with the same characters, gentle comedy, bright family-friendly 3D animation.']
+ ];
+ const arr=lang==='English'?en:bn;
+ const intros={
+  'বাংলা':`আজকের গল্প: ${title}। চরিত্র: ${chars}।`,
+  'English':`Today's story is ${title}. Characters: ${chars}.`,
+  'Hindi':`आज की कहानी: ${title}। पात्र: ${chars}।`
+ };
+ const narrations={
+  'বাংলা':['এক সুন্দর জায়গায় আমাদের বন্ধুদের দেখা হলো।','হঠাৎ তারা একটি ছোট সমস্যায় পড়ল।','তারা ভয় না পেয়ে একসঙ্গে কাজ শুরু করল।','বুদ্ধি ও সহযোগিতায় সমস্যার সমাধান হলো।',`এই গল্প থেকে আমরা শিখি: ${lesson}।`,'বন্ধুরা হাসিমুখে বিদায় জানাল।'],
+  'English':['Our friends met in a beautiful place.','Suddenly, they found a little problem.','They worked together and did not give up.','With teamwork, they solved the problem.','The lesson is: '+lesson+'.','The friends smiled and waved goodbye.'],
+  'Hindi':['हमारे दोस्त एक सुंदर जगह पर मिले।','अचानक उन्हें एक छोटी समस्या मिली।','उन्होंने मिलकर कोशिश की।','मिल-जुलकर उन्होंने समस्या हल कर दी।','इस कहानी की सीख है: '+lesson+'।','दोस्तों ने मुस्कुराकर अलविदा कहा।']
+ };
+ let html='', lines=[`KidsToon AI Studio — ${title}`,`Theme: ${theme}`,`Language: ${lang}`,`Duration: ${duration}s`,`Characters: ${chars}`,`Lesson: ${lesson}`,''];
+ for(let i=0;i<count;i++){
+  let s=arr[i], voice=narrations[lang][Math.min(i,narrations[lang].length-1)];
+  let prompt=`${s[2]} Main characters: ${chars}. Keep character appearance exactly consistent across all scenes. Vertical 9:16 composition. No text, no watermark.`;
+  html+=`<article class="scene"><span class="tag">SCENE ${i+1}</span><h3>${s[0]}</h3><p><b>ঘটনা:</b> ${lang==='বাংলা'?s[1]:s[1]}</p><p><b>Voice-over:</b> ${voice}</p><p><b>Image/Video Prompt:</b> ${prompt}</p></article>`;
+  lines.push(`SCENE ${i+1} — ${s[0]}`,`Action: ${s[1]}`,`Voice-over: ${voice}`,`Prompt: ${prompt}`,'');
+ }
+ finalText=lines.join('\n');
+ document.getElementById('story').innerHTML=`<p><b>${title}</b> · ${duration}s · ${lang}</p>`+html;
+ document.getElementById('result').classList.remove('hidden');
+ document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+async function makeVideo(){
+ const status=document.getElementById('videoStatus');
+ const files=[...document.getElementById('sceneImages').files];
+ if(!files.length){status.textContent='আগে Scene-এর ছবি আপলোড করো।';return;}
+ if(!window.MediaRecorder || !HTMLCanvasElement.prototype.captureStream){
+  status.textContent='এই browser-এ video export support নেই। Chrome বা Edge-এর সর্বশেষ version ব্যবহার করো।';return;
+ }
+ status.textContent='ছবি প্রস্তুত করা হচ্ছে...';
+ const images=await Promise.all(files.map(file=>new Promise((resolve,reject)=>{
+  const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=URL.createObjectURL(file);
+ })));
+ const canvas=document.createElement('canvas');canvas.width=720;canvas.height=1280;
+ const ctx=canvas.getContext('2d');
+ const stream=canvas.captureStream(30);
+ let audioContext=null, audioElement=null, audioUrl=null;
+ const audioFile=document.getElementById('audioFile').files[0];
+ if(audioFile){
+  audioUrl=URL.createObjectURL(audioFile);
+  audioElement=new Audio(audioUrl);audioElement.loop=false;
+  audioContext=new (window.AudioContext||window.webkitAudioContext)();
+  await audioContext.resume();
+  const source=audioContext.createMediaElementSource(audioElement);
+  const destination=audioContext.createMediaStreamDestination();
+  source.connect(destination);source.connect(audioContext.destination);
+  destination.stream.getAudioTracks().forEach(track=>stream.addTrack(track));
+ }
+ const mimeType=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')?'video/webm;codecs=vp9':'video/webm';
+ const recorder=new MediaRecorder(stream,{mimeType,videoBitsPerSecond:4500000});
+ const chunks=[];
+ recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};
+ const stopped=new Promise(resolve=>recorder.onstop=resolve);
+ recorder.start();
+ const seconds=Number(document.getElementById('sceneSeconds').value)||5;
+ const total=images.length*seconds;
+ const start=performance.now();
+ if(audioElement){try{await audioElement.play();}catch(e){status.textContent='Audio autoplay বন্ধ আছে—ভিডিও তৈরি হচ্ছে, তবে অডিও নাও থাকতে পারে।';}}
+ status.textContent='ভিডিও রেন্ডার হচ্ছে... এই পেজ খোলা রাখো।';
+ await new Promise(resolve=>{
+  function draw(now){
+   const elapsed=(now-start)/1000;
+   const scene=Math.min(images.length-1,Math.floor(elapsed/seconds));
+   const local=(elapsed%seconds)/seconds;
+   const img=images[scene];
+   ctx.fillStyle='#10172a';ctx.fillRect(0,0,720,1280);
+   const scale=Math.max(720/img.width,1280/img.height)*(1+0.08*local);
+   const w=img.width*scale,h=img.height*scale;
+   const drift=local*18;
+   ctx.save();ctx.beginPath();ctx.rect(0,0,720,1280);ctx.clip();
+   ctx.drawImage(img,(720-w)/2-drift,(1280-h)/2,w,h);
+   ctx.restore();
+   const fade=Math.min(1,local*8,(1-local)*8);
+   ctx.fillStyle=`rgba(0,0,0,${0.38*Math.max(0,fade)})`;
+   ctx.fillRect(0,1080,720,200);
+   ctx.fillStyle='#fff';ctx.textAlign='center';ctx.font='bold 38px sans-serif';
+   const label=`Scene ${scene+1}`;
+   ctx.fillText(label,360,1170);
+   ctx.font='26px sans-serif';ctx.fillText('KidsToon AI Studio',360,1220);
+   if(elapsed<total){requestAnimationFrame(draw);}else{resolve();}
+  }
+  requestAnimationFrame(draw);
+ });
+ if(audioElement)audioElement.pause();
+ recorder.stop();await stopped;
+ stream.getTracks().forEach(t=>t.stop());
+ if(audioContext)await audioContext.close();
+ const blob=new Blob(chunks,{type:'video/webm'});
+ const url=URL.createObjectURL(blob);
+ const preview=document.getElementById('preview');preview.src=url;preview.classList.remove('hidden');
+ const link=document.getElementById('videoDownload');link.href=url;link.classList.remove('hidden');
+ status.textContent=`ভিডিও তৈরি হয়েছে! ${total} সেকেন্ড, ${images.length}টি Scene।`;
+}
+function downloadText(){if(!finalText)return;const blob=new Blob([finalText],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='kidstoon-storyboard.txt';a.click();URL.revokeObjectURL(a.href)}
+async function copyText(){if(!finalText)return;try{await navigator.clipboard.writeText(finalText);alert('Storyboard কপি হয়েছে!')}catch(e){alert('কপি করা যায়নি—TXT ডাউনলোড করো।')}}
+</script>
+</body></html>
